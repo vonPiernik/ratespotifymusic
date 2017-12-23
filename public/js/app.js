@@ -45599,7 +45599,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/session').then(function (response) {
-                _this.accessToken = "Bearer " + response.data.accessToken;
+                _this.accessTokenFull = "Bearer " + response.data.accessToken;
+                _this.accessToken = response.data.accessToken;
 
                 _this.getMe();
             });
@@ -45612,7 +45613,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             instance.defaults.headers.common = {};
             instance.get(url, {
                 headers: {
-                    'Authorization': this.accessToken
+                    'Authorization': this.accessTokenFull
                 }
             }).then(function (response) {
                 _this2.me = response.data;
@@ -45832,151 +45833,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['accessToken', 'userId'],
-	data: function data() {
-		return {
-			featuredAlbums: {
-				albums: {
-					items: {}
-				}
-			},
-			featuredAlbumsPL: {
-				albums: {
-					items: {}
-				}
-			}
-		};
-	},
-	mounted: function mounted() {},
+    props: ['accessToken', 'userId'],
+    data: function data() {
+        return {
+            featuredAlbums: {
+                albums: {
+                    items: {}
+                }
+            },
+            featuredAlbumsPL: {
+                albums: {
+                    items: {}
+                }
+            }
+        };
+    },
+    mounted: function mounted() {},
 
-	watch: {
-		userId: function userId() {
-			if (this.userId.length > 0) {
-				this.getFeaturedAlbums();
-				this.getFeaturedAlbumsPL();
-			}
-		}
-	},
-	methods: {
-		getFeaturedAlbums: function getFeaturedAlbums() {
-			var _this = this;
+    watch: {
+        userId: function userId() {
+            if (this.userId.length > 0) {
+                this.getFeaturedAlbums();
+            }
+        }
+    },
+    methods: {
+        getFeaturedAlbums: function getFeaturedAlbums() {
+            var _this = this;
 
-			var url = 'https://api.spotify.com/v1/browse/new-releases?limit=5';
-			var instance = axios.create();
-			instance.defaults.headers.common = {};
-			instance.get(url, {
-				headers: {
-					'Authorization': this.accessToken
-				}
-			}).then(function (response) {
-				_this.featuredAlbums = response.data;
-				var userId = _this.userId;
+            var url = '/api/spotify/featuredAlbums';
+            var instance = axios.create();
+            instance.defaults.headers.common = {};
+            instance.get(url, {
+                headers: {
+                    'Authorization': this.accessToken,
+                    'User': this.userId
+                }
+            }).then(function (response) {
+                _this.featuredAlbums = response.data;
+            });
+        },
 
-				_.forEach(_this.featuredAlbums.albums.items, function (album, key) {
-					axios.get('/api/ratings/' + userId + '/' + album.id).then(function (response) {
-						if (response.data != "norating") {
-							album.userRating = response.data;
-
-							document.getElementById(album.id + "-star" + album.userRating).checked = true;
-						}
-					});
-					axios.get('/api/ratings/' + album.id).then(function (response) {
-						if (response.data != "norating") {
-
-							album.avgRating = response.data;
-							album.name = album.name + " ";
-
-							var roundedRating = _.round(album.avgRating);
-							document.getElementById(album.id + "-star" + roundedRating).classList.add('avgRating');
-						}
-					});
-				});
-			});
-		},
-		getFeaturedAlbumsPL: function getFeaturedAlbumsPL() {
-			var _this2 = this;
-
-			var url = 'https://api.spotify.com/v1/browse/new-releases?limit=5&country=PL';
-			var instance = axios.create();
-			instance.defaults.headers.common = {};
-			instance.get(url, {
-				headers: {
-					'Authorization': this.accessToken
-				}
-			}).then(function (response) {
-				_this2.featuredAlbumsPL = response.data;
-				var userId = _this2.userId;
-
-				_.forEach(_this2.featuredAlbumsPL.albums.items, function (album, key) {
-					axios.get('/api/ratings/' + userId + '/' + album.id).then(function (response) {
-						if (response.data != "norating") {
-							album.userRating = response.data;
-
-							document.getElementById(album.id + "-star" + album.userRating).checked = true;
-						}
-					});
-					axios.get('/api/ratings/' + album.id).then(function (response) {
-						if (response.data != "norating") {
-
-							album.avgRating = response.data;
-							album.name = album.name + " ";
-
-							var roundedRating = _.round(album.avgRating);
-							document.getElementById(album.id + "-star" + roundedRating).classList.add('avgRating');
-						}
-					});
-				});
-			});
-		},
-
-		rate: function rate(event) {
-			axios.post('/api/ratings', {
-				user_id: this.userId,
-				item_id: event.target.name,
-				rating: event.target.value
-			}).then(function (response) {
-				// console.log(response);
-			}).catch(function (error) {
-				console.log(error);
-			});
-		}
-	}
+        rate: function rate(event) {
+            axios.post('/api/ratings', {
+                user_id: this.userId,
+                item_id: event.target.name,
+                rating: event.target.value
+            }).then(function (response) {
+                // console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -46182,201 +46093,6 @@ var render = function() {
           })
         ],
         2
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row featuredAlbums featuredAlbums--PL" },
-        [
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._l(_vm.featuredAlbumsPL.albums.items, function(album) {
-            return _c("div", { staticClass: "col-sm-5ths" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "featuredAlbums__single",
-                  attrs: { href: album.external_urls.spotify, target: "_BLANK" }
-                },
-                [
-                  _c("img", {
-                    staticClass: "featuredAlbums__cover",
-                    attrs: { src: album.images[0].url }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "trackRating" }, [
-                    _c("fieldset", { staticClass: "rating" }, [
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star10",
-                          name: album.id,
-                          value: "10"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star10" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star9",
-                          name: album.id,
-                          value: "9"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star9" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star8",
-                          name: album.id,
-                          value: "8"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star8" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star7",
-                          name: album.id,
-                          value: "7"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star7" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star6",
-                          name: album.id,
-                          value: "6"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star6" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star5",
-                          name: album.id,
-                          value: "5"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star5" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star4",
-                          name: album.id,
-                          value: "4"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star4" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star3",
-                          name: album.id,
-                          value: "3"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star3" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star2",
-                          name: album.id,
-                          value: "2"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star2" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star1",
-                          name: album.id,
-                          value: "1"
-                        },
-                        on: { change: _vm.rate }
-                      }),
-                      _c("label", {
-                        staticClass: "full",
-                        attrs: { for: album.id + "-star1" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "trackRating--score" }, [
-                      _vm._v(_vm._s(album.avgRating))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "featuredAlbums__single__data" }, [
-                    _c("div", { staticClass: "featuredAlbums__single__type" }, [
-                      album.album_type == "album"
-                        ? _c("span", [_vm._v("Album")])
-                        : _c("span", [_vm._v("Utwór")])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "featuredAlbums__single__name" }, [
-                      _c("span", [_vm._v(_vm._s(album.name))])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "featuredAlbums__single__artist" },
-                      _vm._l(album.artists, function(artist) {
-                        return _c("span", [_vm._v(_vm._s(artist.name) + " ")])
-                      })
-                    )
-                  ])
-                ]
-              )
-            ])
-          })
-        ],
-        2
       )
     ])
   ])
@@ -46389,15 +46105,6 @@ var staticRenderFns = [
     return _c("h1", { staticClass: "section-title" }, [
       _vm._v("Najpopularniejsze "),
       _c("strong", [_vm._v("na świecie")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h1", { staticClass: "section-title" }, [
-      _vm._v("Najpopularniejsze "),
-      _c("strong", [_vm._v("w Polsce")])
     ])
   }
 ]

@@ -52,7 +52,8 @@ export default {
     methods: {
         getToken(){
             axios.get('/session').then((response) => {
-                this.accessToken = "Bearer " +  response.data.accessToken
+                this.accessTokenFull = "Bearer " +  response.data.accessToken
+                this.accessToken = response.data.accessToken
 
                 this.getMe();
             });
@@ -63,7 +64,7 @@ export default {
             instance.defaults.headers.common = {};
             instance.get(url, {
                 headers : {
-                    'Authorization' : this.accessToken
+                    'Authorization' : this.accessTokenFull
                 }
             }).then((response) => {
                 this.me = response.data
