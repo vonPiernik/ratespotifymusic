@@ -1,0 +1,269 @@
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+body {
+    background: #fff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* >>----------> [ nav ] <-----------<< */
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: 900;
+}
+
+.navbar-default {
+    border: 0;
+    background: #000000;  
+    border-radius: 0;
+}
+
+.navbar-default .navbar-text {
+    color: #fff;
+}
+
+.navbar-default .navbar-text a {
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-text a:hover {
+    color: #fff;
+}
+ul.navbar.navbar-right {
+    margin-bottom: 0;
+    line-height: 48px;
+    margin-right: 50px;
+}
+
+ul.navbar.navbar-right li a {
+    color: #fff;
+    font-weight: bold;
+    padding: 0 18px;
+}
+
+ul.navbar.navbar-right li {
+    display: inline-block;
+}
+/* >>----------> [ featured ] <-----------<< */
+.featuredAlbums__single {
+    display: block;
+    height: 420px;
+    overflow: hidden;
+    margin: 0 -10px 15px;
+    border-radius: 5px;
+    position: relative;
+    background: linear-gradient(to bottom, #43c6ac, #2196F3);
+}
+
+.featuredAlbums__cover {
+    position: absolute;
+    height: 100%;
+    left: 50%;
+    margin-left: -210px;
+    opacity: .3;
+    transition: .3s all;
+}
+
+.featuredAlbums__single__name {
+    font-size: 30px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+}
+.featuredAlbums__single__data {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+}
+
+.featuredAlbums__single__artist {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    margin-top: 5px;
+}
+
+.featuredAlbums__single:hover .featuredAlbums__cover {
+    opacity: .8;
+}
+.featuredAlbums__single__type {
+    color: #FFC107;
+    font-weight: bold;
+}
+
+
+/* >>----------> [ stars ] <-----------<< */
+
+.trackRating {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #FFC107;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 0;
+    transition: .3s all;
+}
+.trackRating span {
+    padding: 0 1px;
+}
+.featuredAlbums__single:hover .trackRating {
+    color: #fff;
+}
+
+
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  border: none;
+  float: none;
+  width: 250px;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+  margin: auto;
+  text-align: center;
+  /* text-shadow: 0 0 20px #00000099; */
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label:before {
+  margin: 0px 2px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\F005";
+  content: "\F006";
+  font-weight: normal;
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+  width: 25px;
+    opacity: .4;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, .rating > input.avgRating ~ label, .rating:not(:checked) > label:hover, .rating:not(:checked) > label:hover ~ label {
+    color: #FFC107;
+    opacity: 1;
+}
+
+/* hover previous stars in list */
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #FFED85;
+}
+
+.featuredAlbums__single:hover .rating {
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.rating > input:checked ~ label::before, .rating:not(:checked) > label:hover::before, .rating:not(:checked) > label:hover ~ label::before {
+    content: "\F005";
+}
+
+/* >>----------> [ section title ] <-----------<< */
+h1.section-title {
+    color: #000;
+    font-size: 30px;
+    padding: 0 3px;
+    margin: 50px 0 20px;
+    text-align: center;
+}
+
+
+/* >>----------> [ search box ] <-----------<< */
+.searchBox {
+    overflow: hidden;
+    padding: 100px 0;
+    text-align: center;
+    background: red;
+    margin-top: -22px;
+    background: linear-gradient(to right, #43c6ac, #f8ffae);
+}
+
+.searchBox input {
+    width: 600px;
+    border: 1px solid rgba(70, 199, 172, 0.5215686274509804);
+    padding: 20px;
+    font-size: 20px;
+    background: #9ee3ad;
+    color: #fff;
+}
+
+.searchBox input::placeholder {
+    color: #fff;
+}
+.searchBox .search {
+    content: "\F002";
+    /* font-family: 'Font Awesome'; */
+    font-family: FontAwesome;
+    font-size: 40px;
+    position: relative;
+    top: 7px;
+    padding: 18px 25px;
+    color: #44c6ac;
+    cursor: pointer;
+}
+
+/* >>----------> [ 5-kolumnowy layout w bs ] <-----------<< */
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+/* >>----------> [ poszerzenie kontenera bootstrapa ] <-----------<< */
+@media (min-width: 1200px) {
+    .container{
+        width: 1550px;
+    }
+}
