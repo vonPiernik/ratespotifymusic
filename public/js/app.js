@@ -45833,17 +45833,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['accessToken', 'userId'],
     data: function data() {
         return {
             featuredAlbums: {
-                albums: {
-                    items: {}
-                }
-            },
-            featuredAlbumsPL: {
                 albums: {
                     items: {}
                 }
@@ -45873,6 +45908,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 _this.featuredAlbums = response.data;
+                $(document).ready(function () {
+                    $('.checked').prop('checked', true);
+                });
             });
         },
 
@@ -45923,140 +45961,140 @@ var render = function() {
                   _c("div", { staticClass: "trackRating" }, [
                     _c("fieldset", { staticClass: "rating" }, [
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star10",
-                          name: album.id,
-                          value: "10"
+                        class: {
+                          checked: album.userRating == 10,
+                          avgRating: album.roundAvgRating == 10
                         },
+                        attrs: { type: "radio", name: album.id, value: "10" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star10" }
                       }),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star9",
-                          name: album.id,
-                          value: "9"
+                        class: {
+                          checked: album.userRating == 9,
+                          avgRating: album.roundAvgRating == 9
                         },
+                        attrs: { type: "radio", name: album.id, value: "9" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star9" }
                       }),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star8",
-                          name: album.id,
-                          value: "8"
+                        class: {
+                          checked: album.userRating == 8,
+                          avgRating: album.roundAvgRating == 8
                         },
+                        attrs: { type: "radio", name: album.id, value: "8" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star8" }
                       }),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star7",
-                          name: album.id,
-                          value: "7"
+                        class: {
+                          checked: album.userRating == 7,
+                          avgRating: album.roundAvgRating == 7
                         },
+                        attrs: { type: "radio", name: album.id, value: "7" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star7" }
                       }),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star6",
-                          name: album.id,
-                          value: "6"
+                        class: {
+                          checked: album.userRating == 6,
+                          avgRating: album.roundAvgRating == 6
                         },
+                        attrs: { type: "radio", name: album.id, value: "6" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star6" }
                       }),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star5",
-                          name: album.id,
-                          value: "5"
+                        class: {
+                          checked: album.userRating == 5,
+                          avgRating: album.roundAvgRating == 5
                         },
+                        attrs: { type: "radio", name: album.id, value: "5" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star5" }
                       }),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star4",
-                          name: album.id,
-                          value: "4"
+                        class: {
+                          checked: album.userRating == 4,
+                          avgRating: album.roundAvgRating == 4
                         },
+                        attrs: { type: "radio", name: album.id, value: "4" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star4" }
                       }),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star3",
-                          name: album.id,
-                          value: "3"
+                        class: {
+                          checked: album.userRating == 3,
+                          avgRating: album.roundAvgRating == 3
                         },
+                        attrs: { type: "radio", name: album.id, value: "3" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star3" }
                       }),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star2",
-                          name: album.id,
-                          value: "2"
+                        class: {
+                          checked: album.userRating == 2,
+                          avgRating: album.roundAvgRating == 2
                         },
+                        attrs: { type: "radio", name: album.id, value: "2" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star2" }
                       }),
                       _vm._v(" "),
                       _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: album.id + "-star1",
-                          name: album.id,
-                          value: "1"
+                        class: {
+                          checked: album.userRating == 1,
+                          avgRating: album.roundAvgRating == 1
                         },
+                        attrs: { type: "radio", name: album.id, value: "1" },
                         on: { change: _vm.rate }
                       }),
+                      _vm._v(" "),
                       _c("label", {
                         staticClass: "full",
                         attrs: { for: album.id + "-star1" }
@@ -46180,11 +46218,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['accessToken', 'userId'],
     data: function data() {
-        return {};
+        return {
+            keywords: "",
+            result: {
+                artists: {
+                    items: []
+                },
+                tracks: {
+                    items: []
+                },
+                albums: {
+                    items: []
+                }
+            }
+        };
+    },
+    watch: {
+        keywords: {
+            handler: function handler(after, before) {
+                if (this.keywords.length > 2) {
+                    this.search();
+                }
+            }
+        }
+    },
+    methods: {
+        search: _.debounce(function () {
+            var _this = this;
+
+            var url = '/api/spotify/search?limit=5&keywords=' + this.keywords;
+            var instance = axios.create();
+            instance.defaults.headers.common = {};
+            instance.get(url, {
+                headers: {
+                    'Authorization': this.accessToken
+                }
+            }).then(function (response) {
+                _this.result = response.data;
+                console.log(response.data);
+            });
+        }, 500)
     }
 });
 
@@ -46199,7 +46303,141 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._m(0),
+      _c("div", { staticClass: "searchBox" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.keywords,
+              expression: "keywords"
+            }
+          ],
+          attrs: { type: "text", placeholder: "Szukaj utworu lub albumu..." },
+          domProps: { value: _vm.keywords },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.keywords = $event.target.value
+            }
+          }
+        }),
+        _c("span", { staticClass: "search fa fa-search" }),
+        _vm._v(" "),
+        _c("ul", { staticClass: "searchSuggest" }, [
+          _vm.result.artists.items.length > 0
+            ? _c(
+                "div",
+                { staticClass: "li-wrapper li-wrapper--artists" },
+                [
+                  _c("span", { staticClass: "searchSuggest__label" }, [
+                    _vm._v("Artyści")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.result.artists.items, function(item) {
+                    return _c("li", [
+                      _c(
+                        "div",
+                        { staticClass: "searchSuggest__albumCoverWrapper" },
+                        [
+                          item.images.length > 0
+                            ? _c("img", {
+                                staticClass: "searchSuggest__albumCover",
+                                attrs: { src: item.images[1].url }
+                              })
+                            : _vm._e()
+                        ]
+                      ),
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(item.name) +
+                          " \n                "
+                      )
+                    ])
+                  })
+                ],
+                2
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.result.tracks.items.length > 0
+            ? _c(
+                "div",
+                { staticClass: "li-wrapper li-wrapper--tracks" },
+                [
+                  _c("span", { staticClass: "searchSuggest__label" }, [
+                    _vm._v("Utwory")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.result.tracks.items, function(item) {
+                    return _c("li", [
+                      _vm._v(
+                        "\n                    " + _vm._s(item.name) + " "
+                      ),
+                      _c(
+                        "small",
+                        [
+                          _vm._v("( "),
+                          _vm._l(item.artists, function(artist) {
+                            return _c("span", [
+                              _vm._v(_vm._s(artist.name) + " ")
+                            ])
+                          }),
+                          _vm._v(")")
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      item.avgRating
+                        ? _c("span", { staticClass: "searchSuggets__rating" }, [
+                            _vm._v(_vm._s(item.avgRating) + " / 10")
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                ],
+                2
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.result.albums.items.length > 0
+            ? _c(
+                "div",
+                { staticClass: "li-wrapper li-wrapper--albums" },
+                [
+                  _c("span", { staticClass: "searchSuggest__label" }, [
+                    _vm._v("Albumy")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.result.albums.items, function(item) {
+                    return _c("li", [
+                      _c(
+                        "div",
+                        { staticClass: "searchSuggest__albumCoverWrapper" },
+                        [
+                          item.images.length > 0
+                            ? _c("img", {
+                                staticClass: "searchSuggest__albumCover",
+                                attrs: { src: item.images[1].url }
+                              })
+                            : _vm._e()
+                        ]
+                      ),
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(item.name) +
+                          " \n                "
+                      )
+                    ])
+                  })
+                ],
+                2
+              )
+            : _vm._e()
+        ])
+      ]),
       _vm._v(" "),
       _c("FeaturedAlbums", {
         attrs: { accessToken: _vm.accessToken, userId: _vm.userId }
@@ -46208,19 +46446,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "searchBox" }, [
-      _c("input", {
-        attrs: { type: "text", placeholder: "Szukaj utworu lub albumu..." }
-      }),
-      _c("span", { staticClass: "search fa fa-search" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -9,16 +9,56 @@
 					<img :src="album.images[0].url" class="featuredAlbums__cover">
 					<div class="trackRating">
 						<fieldset class="rating">
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star10'" :name="album.id" value="10" /><label class="full" :for="album.id + '-star10'"></label>
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star9'" :name="album.id" value="9" /><label class="full" :for="album.id + '-star9'"></label>
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star8'" :name="album.id" value="8" /><label class="full" :for="album.id + '-star8'"></label>
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star7'" :name="album.id" value="7" /><label class="full" :for="album.id + '-star7'"></label>
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star6'" :name="album.id" value="6" /><label class="full" :for="album.id + '-star6'"></label>
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star5'" :name="album.id" value="5" /><label class="full" :for="album.id + '-star5'"></label>
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star4'" :name="album.id" value="4" /><label class="full" :for="album.id + '-star4'"></label>
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star3'" :name="album.id" value="3" /><label class="full" :for="album.id + '-star3'"></label>
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star2'" :name="album.id" value="2" /><label class="full" :for="album.id + '-star2'"></label>
-						    <input type="radio" v-on:change="rate" :id="album.id + '-star1'" :name="album.id" value="1" /><label class="full" :for="album.id + '-star1'"></label>
+						    <input 	type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 10), 'avgRating':(album.roundAvgRating == 10) }" :name="album.id" value="10" />
+						    <label class="full" :for="album.id + '-star10'"></label>
+
+						    <input type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 9), 'avgRating':(album.roundAvgRating == 9) }" :name="album.id" value="9" />
+						    <label class="full" :for="album.id + '-star9'"></label>
+
+						    <input 	type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 8), 'avgRating':(album.roundAvgRating == 8) }" :name="album.id" value="8" />
+						    <label class="full" :for="album.id + '-star8'"></label>
+
+						    <input 	type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 7), 'avgRating':(album.roundAvgRating == 7) }" :name="album.id" value="7" />
+						    <label class="full" :for="album.id + '-star7'"></label>
+
+						    <input 	type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 6), 'avgRating':(album.roundAvgRating == 6) }" :name="album.id" value="6" />
+						    <label class="full" :for="album.id + '-star6'"></label>
+
+						    <input 	type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 5), 'avgRating':(album.roundAvgRating == 5) }" :name="album.id" value="5" />
+						    <label class="full" :for="album.id + '-star5'"></label>
+
+						    <input 	type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 4), 'avgRating':(album.roundAvgRating == 4) }" :name="album.id" value="4" />
+						    <label class="full" :for="album.id + '-star4'"></label>
+
+						    <input 	type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 3), 'avgRating':(album.roundAvgRating == 3) }" :name="album.id" value="3" />
+						    <label class="full" :for="album.id + '-star3'"></label>
+
+						    <input 	type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 2), 'avgRating':(album.roundAvgRating == 2) }" :name="album.id" value="2" />
+						    <label class="full" :for="album.id + '-star2'"></label>
+
+						    <input 	type="radio" 
+						    		v-on:change="rate" 
+						    		:class="{ 'checked': (album.userRating == 1), 'avgRating':(album.roundAvgRating == 1) }" :name="album.id" value="1" />
+						    <label class="full" :for="album.id + '-star1'"></label>
+
 						</fieldset>
 
 						<p class="trackRating--score">{{ album.avgRating }}</p>
@@ -56,11 +96,6 @@ export default {
         			items: {}
     			}
     		},
-        	featuredAlbumsPL: {
-        		albums: {
-        			items: {}
-    			}
-    		},
         }
     }, 
     mounted() {
@@ -85,6 +120,9 @@ export default {
                 }
             }).then((response) => {
                 this.featuredAlbums = response.data
+                $(document).ready(function(){
+                	$('.checked').prop('checked', true);
+                })
             });
         },
         rate: function(event){

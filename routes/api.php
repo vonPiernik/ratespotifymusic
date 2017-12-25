@@ -19,3 +19,5 @@ Route::get('ratings/{item_id}', 'RatingsController@average');
 Route::get('ratings/{user_id}/{item_id}', 'RatingsController@my');
 
 Route::get('spotify/featuredAlbums', 'SpotifyController@featuredAlbums');
+
+Route::get('spotify/search', 'SpotifyController@search');

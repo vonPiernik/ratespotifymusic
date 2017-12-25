@@ -8552,20 +8552,21 @@ h1.section-title {
 
 .searchBox {
   overflow: hidden;
-  padding: 100px 0;
+  padding: 10px 0 20px;
   text-align: center;
   background: red;
   margin-top: -22px;
-  background: -webkit-gradient(linear, left top, right top, from(#43c6ac), to(#f8ffae));
-  background: linear-gradient(to right, #43c6ac, #f8ffae);
+  background: -webkit-gradient(linear, left top, right top, from(#43c6ac), to(#000000));
+  background: linear-gradient(to right, #43c6ac, #000000);
+  background: #222;
 }
 
 .searchBox input {
-  width: 600px;
-  border: 1px solid rgba(70, 199, 172, 0.521569);
+  width: 900px;
+  border: 1px solid #222222;
   padding: 20px;
   font-size: 20px;
-  background: #9ee3ad;
+  background: #000000;
   color: #fff;
 }
 
@@ -8592,9 +8593,87 @@ h1.section-title {
   font-size: 40px;
   position: relative;
   top: 7px;
+  width: 90px;
+  margin-left: -90px;
   padding: 18px 25px;
-  color: #44c6ac;
+  color: #ffffff;
   cursor: pointer;
+}
+
+span.searchSuggest__label {
+  text-align: left;
+  display: block;
+  padding: 5px 10px 5px;
+  /* border-bottom: 1px solid #252525; */
+  color: #ffffff;
+  font-weight: bold;
+  clear: both;
+  /* margin-bottom: 10px; */
+}
+
+ul.searchSuggest {
+  position: absolute;
+  left: 50%;
+  margin-left: -450px;
+  width: 900px;
+  margin-top: -1px;
+  border: 1px solid #222222;
+  background: #000000;
+  color: #fff;
+  overflow: hidden;
+  padding: 0 10px;
+  z-index: 1;
+  -webkit-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.14);
+          box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.14);
+}
+
+ul.searchSuggest li {
+  display: block;
+  padding: 0px 10px;
+  line-height: 36px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+ul.searchSuggest .li-wrapper--artists li,
+ul.searchSuggest .li-wrapper--albums li {
+  width: 20%;
+  display: block;
+  float: left;
+  clear: none;
+  line-height: 17px;
+  font-size: 14px;
+  text-align: center;
+  color: #b5b5b5;
+}
+
+img.searchSuggest__albumCover {
+  width: 100%;
+  display: block;
+  margin: 0 auto 8px;
+}
+
+ul.searchSuggest small {
+  font-size: 18px;
+  font-weight: normal;
+  color: #a4a4a4;
+}
+
+.li-wrapper {
+  overflow: hidden;
+  padding-bottom: 15px;
+}
+
+.searchSuggest__albumCoverWrapper {
+  width: 100%;
+  height: 156px;
+  overflow: hidden;
+  background: #222222;
+  background-image: url(https://edb-cdn-prod-tqgiyve.stackpathdns.com/teams/icons/58a768a8-ca95-11e7-b8c3-0ec39221f676.png);
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 8px;
 }
 
 /* >>----------> [ 5-kolumnowy layout w bs ] <-----------<< */
