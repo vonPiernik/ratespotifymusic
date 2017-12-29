@@ -1,1 +1,1 @@
-ratespotifymusicv2
+Aplikacja korzysta ze Spotify API i daje możliwość oceniania utworów oraz albumów znajdujących się w bazie Spotify.

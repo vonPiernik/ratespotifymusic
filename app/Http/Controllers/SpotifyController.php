@@ -64,4 +64,26 @@ class SpotifyController extends Controller
 
         return response()->json($result);
     }
+
+    public function album($id)
+    {
+        $accessToken = Request::header('Authorization');
+        $user_id = Request::header('User');
+
+
+
+        $api = new SpotifyWebAPI\SpotifyWebAPI();
+        $api->setAccessToken($accessToken);
+        
+        $result = $api->getAlbum($id);
+        $result->avgRating = Rating::where('item_id', $id)->avg('rating');
+        $result->roundAvgRating = round(Rating::where('item_id', $id)->avg('rating'));
+        $result->userRating = Rating::where('item_id', $id)->where('user_id', $user_id)->value('rating');
+        foreach ($result->tracks->items as $key => $value) {
+            $value->avgRating = Rating::where('item_id', $value->id)->avg('rating');
+            $value->roundAvgRating = round(Rating::where('item_id', $value->id)->avg('rating'));
+            $value->userRating = Rating::where('item_id', $value->id)->where('user_id', $user_id)->value('rating');
+        }
+        return response()->json($result);
+    }
 }

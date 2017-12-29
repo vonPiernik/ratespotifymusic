@@ -19,6 +19,12 @@ Route::get('session', function(){
 	return session()->all();
 });
 
+
 Route::get('callback', 'SpotifyAuthController@callback');
 
 Route::get('auth', 'SpotifyAuthController@auth');
+
+# Vue
+Route::any('{all}', function() {
+	return view('app');
+})->where(['all' => '.*']);

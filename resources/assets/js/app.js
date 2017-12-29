@@ -11,6 +11,7 @@ window.Vue = require('vue');
 
 import Router from 'vue-router';
 
+window.Vibrant = require('node-vibrant');
 
 
 Vue.use(Router)
@@ -25,7 +26,15 @@ Vue.component('App', require('./components/App.vue'));
 
 Vue.component('FeaturedAlbums', require('./components/FeaturedAlbums.vue'));
 
+Vue.component('RecentlyPlayed', require('./components/RecentlyPlayed.vue'));
+
+Vue.component('RatingStars', require('./components/RatingStars.vue'));
+
 const Home = require('./components/Home.vue'); 
+
+const Album = require('./components/Album.vue'); 
+
+const Artist = require('./components/Artist.vue'); 
 
 
 const router = new Router({
@@ -34,8 +43,15 @@ const router = new Router({
     { 
         path: '/', component: Home, name: 'home'
     },
+    { 
+        path: '/album/:id', component: Album, name: 'album'
+    },
+    { 
+        path: '/artist/:id', component: Artist, name: 'artist'
+    },
   ]
 })
+
 new Vue({
     router,
     el: 'app'

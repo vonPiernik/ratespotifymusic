@@ -8353,6 +8353,7 @@ button.close {
 body {
   background: #fff;
   font-family: 'Montserrat', sans-serif;
+  padding-top: 72px;
 }
 
 /* >>----------> [ nav ] <-----------<< */
@@ -8377,6 +8378,7 @@ body {
 .navbar-default .navbar-text a {
   color: #fff;
   font-weight: bold;
+  margin-right: 30px;
 }
 
 .navbar-default .navbar-text a:hover {
@@ -8570,6 +8572,10 @@ h1.section-title {
   color: #fff;
 }
 
+.searchBox input:focus {
+  outline: 0;
+}
+
 .searchBox input::-webkit-input-placeholder {
   color: #fff;
 }
@@ -8619,6 +8625,7 @@ ul.searchSuggest {
   margin-top: -1px;
   border: 1px solid #222222;
   background: #000000;
+  background: rgba(0, 0, 0, 0.88);
   color: #fff;
   overflow: hidden;
   padding: 0 10px;
@@ -8674,6 +8681,86 @@ ul.searchSuggest small {
   background-position: center;
   background-size: cover;
   margin-bottom: 8px;
+}
+
+/* >>----------> [ album view ] <-----------<< */
+
+.album__cover {
+  margin: 0 -10px 0 -15px;
+  position: relative;
+}
+
+img.album__cover__img {
+  width: 100%;
+}
+
+.album {
+  padding: 35px 0;
+}
+
+h1.album__name {
+  font-size: 70px;
+  font-weight: 900;
+  color: #000;
+  margin: 0 0 30px;
+  -webkit-transition: .5s color;
+  transition: .5s color;
+}
+
+.album thead td {
+  /* font-weight: bold; */
+  color: #b5b5b5;
+}
+
+.album table tbody td {
+  font-weight: bold;
+  color: #000;
+  /* line-height: 49px; */
+  font-size: 14px;
+  padding: 13px 11px;
+  border: 0;
+}
+
+.album__rating {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  padding-bottom: 150px;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(255, 0, 0, 0)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(255, 0, 0, 0));
+}
+
+.album .trackRating--score {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 0;
+  color: #000;
+}
+
+.album .trackRating--score strong {
+  font-size: 40px;
+  display: block;
+  font-weight: 900;
+}
+
+.album table .trackRating {
+  position: static;
+  padding: 0;
+  color: #000;
+}
+
+.album table .rating > label {
+  color: #000;
+  margin-bottom: 0;
+  /* height: 20px; */
+  line-height: 15px;
+  padding-top: 5px;
+}
+
+.album thead td:last-child {
+  text-align: right;
 }
 
 /* >>----------> [ 5-kolumnowy layout w bs ] <-----------<< */

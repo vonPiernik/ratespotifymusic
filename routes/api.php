@@ -21,3 +21,9 @@ Route::get('ratings/{user_id}/{item_id}', 'RatingsController@my');
 Route::get('spotify/featuredAlbums', 'SpotifyController@featuredAlbums');
 
 Route::get('spotify/search', 'SpotifyController@search');
+
+Route::get('spotify/album/{id}', 'SpotifyController@album');
+
+Route::get('spotify/artist/{id}', 'SpotifyController@artist');
+
+Route::put('spotify/play', 'SpotifyController@play');
