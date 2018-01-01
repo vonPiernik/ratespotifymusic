@@ -56,37 +56,30 @@ ul.navbar.navbar-right li {
 /* >>----------> [ featured ] <-----------<< */
 .featuredAlbums__single {
     display: block;
-    height: 420px;
-    overflow: hidden;
     margin: 0 -10px 15px;
-    border-radius: 5px;
-    position: relative;
-    background: linear-gradient(to bottom, #43c6ac, #2196F3);
+    color: #000;
 }
-
+.featuredAlbums > div:nth-child(5n+2){
+    clear: left;
+}
+.featuredAlbums__single:hover{
+    text-decoration: none;
+    color: #444;
+}
 .featuredAlbums__cover {
-    position: absolute;
-    height: 100%;
-    left: 50%;
-    margin-left: -210px;
-    opacity: .3;
-    transition: .3s all;
+    width: 100%;
 }
 
 .featuredAlbums__single__name {
     font-size: 30px;
     font-weight: 900;
-    color: #fff;
     line-height: 1;
 }
 .featuredAlbums__single__data {
-    position: absolute;
-    bottom: 0;
     padding: 10px;
 }
 
 .featuredAlbums__single__artist {
-    color: #fff;
     font-size: 20px;
     font-weight: bold;
     line-height: 1;
@@ -94,21 +87,22 @@ ul.navbar.navbar-right li {
 }
 
 .featuredAlbums__single:hover .featuredAlbums__cover {
-    opacity: .8;
 }
 .featuredAlbums__single__type {
     color: #FFC107;
     font-weight: bold;
 }
-
+.featuredAlbums .trackRating {
+    height: 29px;
+    padding: 0;
+    width: auto;
+    margin: 0 -10px;
+}
 
 /* >>----------> [ stars ] <-----------<< */
 
 .trackRating {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #FFC107;
+    color: #000;
     width: 100%;
     text-align: center;
     font-size: 15px;
@@ -117,9 +111,6 @@ ul.navbar.navbar-right li {
 }
 .trackRating span {
     padding: 0 1px;
-}
-.featuredAlbums__single:hover .trackRating {
-    color: #fff;
 }
 
 
@@ -152,7 +143,7 @@ ul.navbar.navbar-right li {
 }
 
 .rating > label {
-  color: #ddd;
+  color: #000;
   float: right;
   width: 25px;
     opacity: .4;
@@ -413,6 +404,70 @@ h1.album__name {
 .album table tbody td:last-child {
     text-align: right;
 }
+
+/* >>----------> [ widok artysty ] <-----------<< */
+.artist__cover {
+    margin: 0 -10px 0 -15px;
+    position: relative;
+}
+
+img.artist__cover__img {
+    width: 100%;
+}
+
+.artist {
+    padding: 35px 0;
+}
+
+h1.artist__name {
+    font-size: 70px;
+    font-weight: 900;
+    color: #000;
+    margin: 0 0 30px;
+    transition: .5s color;
+}
+
+.artist__genres {
+    margin: -20px 0 0;
+    padding: 0 4px;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.53);
+    font-weight: 100;
+}
+
+.artist__albums {
+    overflow: hidden;
+}
+
+.artist__albums__title {
+    /* text-align: center; */
+    font-size: 20px;
+    color: #000;
+    font-weight: 900;
+    padding: 0 5px;
+}
+
+.artist__albums__album {
+    padding: 0 5px;
+    margin-bottom: 20px;
+}
+
+.artist__albums__album img {
+    width: 100%;
+}
+
+.artist__albums__album__album-name {
+    text-align: center;
+    display: block;
+    font-weight: 500;
+    color: #000;
+    padding: 5px 5px 10px;
+}
+
+.artist__albums__album:nth-child(3n+2) {
+    clear: left;
+}
+
 /* >>----------> [ warning ] <-----------<< */
 .warning {
     position: fixed;

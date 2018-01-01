@@ -25,13 +25,36 @@ class SpotifyController extends Controller
 
         $api = new SpotifyWebAPI\SpotifyWebAPI();
         $api->setAccessToken($accessToken);
-    	
+        
         $result = $api->getNewReleases([ 'limit' => $limit ]);
         foreach ($result->albums->items as $key => $value) {
             $value->avgRating = Rating::where('item_id', $value->id)->avg('rating');
             $value->roundAvgRating = round(Rating::where('item_id', $value->id)->avg('rating'));
             $value->userRating = Rating::where('item_id', $value->id)->where('user_id', $user_id)->value('rating');
         }
+        return response()->json($result);
+    }
+
+    public function recentlyPlayed()
+    {
+        $accessToken = Request::header('Authorization');
+        $user_id = Request::header('User');
+
+        if(Request::get('limit')){
+            $limit = Request::get('limit');
+        } else {
+            $limit = 15;
+        }
+
+        $api = new SpotifyWebAPI\SpotifyWebAPI();
+        $api->setAccessToken($accessToken);
+        
+        $result = $api->getRecentlyPlayed([ 'limit' => $limit ]);
+        // foreach ($result->albums->items as $key => $value) {
+        //     $value->avgRating = Rating::where('item_id', $value->id)->avg('rating');
+        //     $value->roundAvgRating = round(Rating::where('item_id', $value->id)->avg('rating'));
+        //     $value->userRating = Rating::where('item_id', $value->id)->where('user_id', $user_id)->value('rating');
+        // }
         return response()->json($result);
     }
 
@@ -84,6 +107,41 @@ class SpotifyController extends Controller
             $value->roundAvgRating = round(Rating::where('item_id', $value->id)->avg('rating'));
             $value->userRating = Rating::where('item_id', $value->id)->where('user_id', $user_id)->value('rating');
         }
+        return response()->json($result);
+    }
+
+    public function artist($id)
+    {
+        $accessToken = Request::header('Authorization');
+        $user_id = Request::header('User');
+
+
+
+        $api = new SpotifyWebAPI\SpotifyWebAPI();
+        $api->setAccessToken($accessToken);
+        
+        $result = $api->getArtist($id);
+        $albums = $api->getArtistAlbums($id);
+        $result->albums = $albums;
+        foreach ($result->albums->items as $key => $value) {
+            $value->avgRating = Rating::where('item_id', $value->id)->avg('rating');
+            $value->roundAvgRating = round(Rating::where('item_id', $value->id)->avg('rating'));
+            $value->userRating = Rating::where('item_id', $value->id)->where('user_id', $user_id)->value('rating');
+        }
+        return response()->json($result);
+    }
+
+    public function play()
+    {
+        $accessToken = Request::header('Authorization');
+        $uris = Request::input('uris');
+
+
+        $api = new SpotifyWebAPI\SpotifyWebAPI();
+        $api->setAccessToken($accessToken);
+        
+        $result = $api->play([ 'uris' => $uris ]);
+       
         return response()->json($result);
     }
 }

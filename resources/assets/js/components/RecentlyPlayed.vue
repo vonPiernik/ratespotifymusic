@@ -3,66 +3,14 @@
 	<!-- <container> -->
 	<div class="container">
     	<div class="row featuredAlbums">
-    		<h1 class="section-title">Najpopularniejsze <strong>na świecie</strong></h1>
+    		<h1 class="section-title">Ostatnio <strong>odtwarzane</strong></h1>
 	        <div class="col-sm-5ths" v-for="album in featuredAlbums.albums.items">
+				<div class="trackRating" v-if="znikniete">
+					 <RatingStars v-if="render" :id="album.id" :userId="userId" :userRating="album.userRating" :roundAvgRating="album.roundAvgRating"></RatingStars>
+					<p class="trackRating--score">{{ album.avgRating }}</p>
+				</div>
 				<router-link :to="'/album/' + album.id" class="featuredAlbums__single">
 					<img :src="album.images[0].url" class="featuredAlbums__cover">
-					<div class="trackRating">
-						<fieldset class="rating">
-						    <input 	type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 10), 'avgRating':(album.roundAvgRating == 10) }" :name="album.id" :id="album.id + '-star10'" value="10" />
-						    <label class="full" :for="album.id + '-star10'"></label>
-
-						    <input type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 9), 'avgRating':(album.roundAvgRating == 9) }" :name="album.id" :id="album.id + '-star9'" value="9" />
-						    <label class="full" :for="album.id + '-star9'"></label>
-
-						    <input 	type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 8), 'avgRating':(album.roundAvgRating == 8) }" :name="album.id" :id="album.id + '-star8'" value="8" />
-						    <label class="full" :for="album.id + '-star8'"></label>
-
-						    <input 	type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 7), 'avgRating':(album.roundAvgRating == 7) }" :name="album.id" :id="album.id + '-star7'" value="7" />
-						    <label class="full" :for="album.id + '-star7'"></label>
-
-						    <input 	type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 6), 'avgRating':(album.roundAvgRating == 6) }" :name="album.id" :id="album.id + '-star6'" value="6" />
-						    <label class="full" :for="album.id + '-star6'"></label>
-
-						    <input 	type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 5), 'avgRating':(album.roundAvgRating == 5) }" :name="album.id" :id="album.id + '-star5'" value="5" />
-						    <label class="full" :for="album.id + '-star5'"></label>
-
-						    <input 	type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 4), 'avgRating':(album.roundAvgRating == 4) }" :name="album.id" :id="album.id + '-star4'" value="4" />
-						    <label class="full" :for="album.id + '-star4'"></label>
-
-						    <input 	type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 3), 'avgRating':(album.roundAvgRating == 3) }" :name="album.id" :id="album.id + '-star3'" value="3" />
-						    <label class="full" :for="album.id + '-star3'"></label>
-
-						    <input 	type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 2), 'avgRating':(album.roundAvgRating == 2) }" :name="album.id" :id="album.id + '-star2'" value="2" />
-						    <label class="full" :for="album.id + '-star2'"></label>
-
-						    <input 	type="radio" 
-						    		v-on:change="rate" 
-						    		:class="{ 'checked': (album.userRating == 1), 'avgRating':(album.roundAvgRating == 1) }" :name="album.id" :id="album.id + '-star1'" value="1" />
-						    <label class="full" :for="album.id + '-star1'"></label>
-
-						</fieldset>
-
-						<p class="trackRating--score">{{ album.avgRating }}</p>
-					</div>
 					<div class="featuredAlbums__single__data">
 						<div class="featuredAlbums__single__type">
 							<span v-if="album.album_type == 'album'">Album</span><span v-else>Utwór</span>
@@ -91,28 +39,29 @@ export default {
 	props: ['accessToken', 'userId'],
     data: function () {
         return {
-        	featuredAlbums: {
-        		albums: {
-        			items: {}
+        	render: true,
+        	recentlyPlayed: {
+    			items: {
+    				track: {}
     			}
     		},
         }
     }, 
     mounted() {
 		if(this.userId){
-			this.getFeaturedAlbums();
+			this.getRecentlyPlayed();
 		}
     },
 	watch: {
 		userId: function () {
 			if(this.userId){
-				this.getFeaturedAlbums();
+				this.getRecentlyPlayed();
 			}
 		},
 	},
     methods: {        
-		getFeaturedAlbums() { 
-            const url = '/api/spotify/featuredAlbums';
+		getRecentlyPlayed() { 
+            const url = '/api/spotify/recentlyPlayed?limit=5';
             var instance = axios.create();
             instance.defaults.headers.common = {};
             instance.get(url, {
@@ -121,7 +70,11 @@ export default {
                     'User' : this.userId
                 }
             }).then((response) => {
-                this.featuredAlbums = response.data
+                this.recentlyPlayed = response.data
+                this.render = false
+                this.$nextTick(() => {
+                    this.render = true
+                })
                 $(document).ready(function(){
                 	$('.checked').prop('checked', true);
                 })

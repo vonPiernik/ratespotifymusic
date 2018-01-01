@@ -33,15 +33,15 @@
         <ul class="searchSuggest" v-click-outside="hideSearchBox">
             <div class="li-wrapper li-wrapper--artists" v-if="result.artists.items.length > 0">
             <span class="searchSuggest__label">Artyści</span>
-                <li v-for="item in result.artists.items">
+                <li v-for="item in result.artists.items"><router-link :to="'/artist/' + item.id + '?track=' + item.id">
                     <div class="searchSuggest__albumCoverWrapper"><img v-if="item.images.length > 0" :src="item.images[1].url" class="searchSuggest__albumCover"></div>
                     {{ item.name }} 
-                </li>
+                </router-link></li>
             </div>
             <div class="li-wrapper li-wrapper--tracks" v-if="result.tracks.items.length > 0">
             <span class="searchSuggest__label">Utwory</span>
                 <li v-for="item in result.tracks.items">
-                     <router-link :to="'/album/' + item.album.id">{{ item.name }} <small>( <span v-for="artist in item.artists">{{ artist.name }} </span>)</small>
+                     <router-link :to="'/album/' + item.album.id + '?track=' + item.id">{{ item.name }} <small>( <span v-for="artist in item.artists">{{ artist.name }} </span>)</small>
 
                     <span class="searchSuggets__rating" v-if="item.avgRating">{{ item.avgRating }} / 10</span>
                     </router-link>
@@ -58,6 +58,7 @@
     </div>
 
     <router-view    :accessToken="accessToken"
+                    :accessTokenFull="accessTokenFull"
                     :userId="me.id"
                     @setColors="setColors">
 
@@ -70,6 +71,7 @@ export default {
     data: function () {
         return {
             accessToken: "Requesting token...",
+            accessTokenFull: "",
             me: {
                 display_name: ""
             },

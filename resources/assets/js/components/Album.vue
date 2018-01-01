@@ -48,7 +48,7 @@
                                         </td>
                                         <td>
                                             <span v-if="track.avgRating && album.album_type!='single'">{{ track.avgRating }} / 10</span>
-                                            <span v-if="album.avgRating && album.album_type=='single'">{{ album.avgRating }} / 10</span>
+                                            <span v-else-if="album.avgRating && album.album_type=='single'">{{ album.avgRating }} / 10</span>
                                             <span v-else>x / 10</span>
                                         </td>
                                     </tr>

@@ -1,8 +1,8 @@
 <template>
     <div>
-<!--         <RecentlyPLayed         :accessToken="accessToken"
+<!--         <RecentlyPlayed         :accessToken="accessToken"
                                 :userId="userId">
-        </RecentlyPLayed> -->
+        </RecentlyPlayed> -->
     	<FeaturedAlbums 		:accessToken="accessToken"
         						:userId="userId">
         </FeaturedAlbums>
